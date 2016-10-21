@@ -1,68 +1,71 @@
 /* Aufteilung der Arbeiten in der Gruppe:
  * 
- * Sarah: Strategy, Test, Year
- * Barbara: besteht auf getter und setter ;) Squirrel, Test, Year
- * Michael: Strategy, Test, Year
- * 
- * 
+ * Sarah: Group, Test
+ * Barbara: besteht auf getter und setter ;) Population, Test
+ * Michael: Strategy, Test
+ *
  */
 public class Test {
-	final Object[][] table;
-	int counter = 0;
-	
-	/*Getter und Setter Methoden vermehrt einsetzen!!!
-	 * Schreiben Sie nur den Kern eines solchen Programms ohne Benutzerschnittstelle sowie ein Testprogramm.
-	 * Der Kern soll die oben beschriebene Funktionalität aufweisen, aber keinerlei Eingabe von der 
-	 * Tastatur oder Ausgabe auf den Bildschirm (und auch nicht von/auf eine Datei) machen. 
-	 * --->> !!!
-	 * Daher müssen alle benötigten bzw. erzeugten Daten über Parameter und Rückgabewerte von Methoden übergeben werden.
-	 * !!!!
+
+	/*
+	Grobstruktur Einteilung:
+	Sarah: Group, Test,
+	Michi: Strategy-> Witterungsverhältnisse, Test
+	Babsi: Klasse Squirrel, Test-output improvement
 	 */
-	
+
+	/*Funktionsumfang geplant:
+
+	Strategy: Anpassung der Witterungsverhältnisse mit random-Faktor multiplikativ, accessability und danger of Death um
+	den Punkt Lebensraum abzudecken;
+
+	Squirrel: Improvement (livestatus, squirrel specific attributes), Methode isMale()-> MachoEichhörnchen das den
+	gesamten Futtervorrat frisst; IQ for Squirrel; randomHeritage-erbt intelligenz der eltern,
+	Strategieparameter;
+
+	Group: nextDay() methode mit getFoodFromStorage(), /in Strategy oder Group: Reviergröße, beeinflusst foodStorage
+	Leckerbissen aufgeschoben bis eventuell Ende; ifSquirrelisMale();
+	Ökosystem-variable,methode?,
+
+	Test: Output letzter Punkt nachfragen bei Klara (Granularität) :)
+
+
+	 */
+
 
 	public static void main(String[] args) {
-		/*double[] strat1 = {1, 0, 0, 0};
-		double[] strat2 = {0, 1, 0, 0};
-		double[] strat3 = {0, 0, 1, 0};
-		double[] strat4 = {0, 0, 0, 1};
-		int size = 0;*/ 
-		// alles über getter und setter gelöst
-	
-		for(int i=0; i<= value; i++){
-		Group group = new Group(Group.getSize(), Strategy.getStrategy(), Year.getYear());
-		addGroupToSimulation();
-		counter++;
-		}
-		
-	
-		printTable(); 
+		Population population1 = new Population(8, 20, 2);
+		System.out.println("Population 1: \n");
+		printPopulation(population1);
+		Population population2 = new Population(10, 15, 3);
+		System.out.println("Population 2: \n");
+		printPopulation(population2);
+		Population population3 = new Population(1, 60, 4);
+		System.out.println("Population 3: \n");
+		printPopulation(population3);
+		Population population4 = new Population(7, 14, 7);
+		System.out.println("Population 4: \n");
+		printPopulation(population4);
+		Population population5 = new Population(30, 5, 2);
+		System.out.println("Population 5: \n");
+		printPopulation(population5);
 	}
-	
-	/* Angabetext:
-	 * Ein Simulationslauf über mehrere Jahre verwendet pro Jahr dieselben Parameterwerte (ausgenommen die Anfangsgrößen) 
-	 * und errechnet pro Jahr eine neue Größe jeder Gruppe. Dabei fallen Nachkommen in dieselben Gruppen wie die Eltern. 
-	 * Am Ende eines Simulationslaufs wird ein Text produziert, der alle verwendeten Parameterwerte sowie die
-	 * jährlichen Veränderungen der Gruppengrößen in Form einer Tabelle enthält.
-	 */
-	
-	public static void addGroupToSimulation(){
-		Simulation sim = new Simulation(group);
-	}
-	
-	public static void printTable(){
-		//System.out.println("Size of Group:" + Group.getGroupSize());
-		//System.out.format(Group.getGroupSize(),)
-		table = new String[counter][];
-		table[0][] = new String[]{"Gruppengröße", "simulierte Jahre", "Überlebende Eichhörnchen", "Strategie", "Vorräte"};
-		
-		for(int i=0; i<= counter; i++){
-			
-		}
-		
-		for(Object[] row : table){
-			System.out.format("%30s%30s%30s\n", row);
-		}
-		
-	}
+	public static void printPopulation(Population population) {
+		System.out.println("Data: non collected food available = 70 kg / descendants per fed, female squirrel = 4 / \n" +
+				"  \t  reproduction necessary food = 30.0 kg / survival necessary food = 15.0 kg / avg. collected food per squirrel = 40.0 kg \n");
+		System.out.println("Strategies: dig-strategy / hide-in-trees-strategy / steal-strategy / human-strategy");
+		System.out.println("\n# " + "\tPerc. of Strategy used" + "\t\tSize over Years");
+		int j = 1;
+		for(Group g : population.getListOfGroups()) {
+			String sizeString = "";
+			for(int s : g.getListOfSizes())
+				sizeString +=  s + " / ";
 
+			sizeString = sizeString.substring(0, sizeString.length()-3); // to get rid of the unnecessary "/" at the end of a line
+
+			System.out.println(j + "\t"+g.getStratCombo()[0]+" / "+g.getStratCombo()[1]+" / "+g.getStratCombo()[2]+" / "+g.getStratCombo()[3] + "\t\t"+sizeString);
+			j++;
+		}
+		System.out.println("\n");
+	}
 }
